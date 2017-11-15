@@ -43,5 +43,35 @@ describe('#values', function () {
     });
 });
 
+describe('#first', function () {
+    it('is a function', function() {
+    expect(_.first).to.be.a('function');
+    });
+  
+    it('returns [] when array is not an array or when n is not a number', function() {
+      expect(_.first({},1)).to.be.eql([]);
+      expect(_.first('abc',2)).to.be.eql([]);
+      expect(_.first(123,1)).to.be.eql([]);
+      expect(_.first([1,2,3],'a')).to.be.eql([]);
+      expect(_.first([1,2,3],[2])).to.be.eql([]);
+      expect(_.first([1,2,3],{})).to.be.eql([]);
+      });
+    
+    it('returns [] when n is 0 ', function() {
+    expect(_.first([1,2,3],0)).to.be.eql([]);
+    });
+
+    it('returns first element in the array when n is 1', function() {
+      expect(_.first([1,2,3],1)).to.be.eql([1]);
+      expect(_.first(["hi","world","bye"],1)).to.be.eql(["hi"]);
+    });  
+  
+    it('returns first n elements in the array', function() {
+      expect(_.first([1,2,3],1)).to.be.eql([1]);
+      expect(_.first([1,2,3],2)).to.be.eql([1,2]);
+      expect(_.first(["hi","world","bye"],2)).to.be.eql(["hi","world"])
+    });
+});
+
 
 
