@@ -225,3 +225,21 @@ describe('#uniq', function () {
     expect(_.uniq([1,2,1,4,3,2])).to.be.eql([1,2,4,3]);
     });
 });
+
+describe('#map', function () {
+    it('is a function', function() {
+    expect(_.map).to.be.a('function');
+    });
+    it('returns [] if input is not an array or object', function() {
+      expect(_.map('abc')).to.be.eql([]);
+      expect(_.map(123)).to.be.eql([]);
+    });
+    
+    it('produces a new array of values by mapping each element in the array through an iteratee', function() {
+      expect(_.map([1,2,3], function (num,index,list){ return num * 3})).to.be.eql([3,6,9]);
+      expect(_.map([1,2,3,4], function (num){ return num + 1})).to.be.eql([2,3,4,5]);
+    });
+    it('produces a new array of values by mapping each element in the object through an iteratee', function() {
+      expect(_.map({one:1,two:2,three:3},function (num){ return num * 3})).to.be.eql([3,6,9]);
+    });
+});

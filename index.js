@@ -123,4 +123,25 @@ _.uniq = function (array) {
     return newList;
 };
 
+_.map = function (list, iteratee) {
+
+    let newArr = [];
+  
+    if (Array.isArray(list)) {
+      for (var i = 0; i < list.length; i++) {
+        newArr.push(iteratee(list[i], i, list))
+      }
+      return newArr;
+    }
+  
+    if (typeof list === 'object') {
+      for (var key in list) {
+        newArr.push(iteratee(list[key], key, list))
+      }
+      return newArr;
+    } 
+    else {
+      return []
+    }
+  }
 module.exports = _;
