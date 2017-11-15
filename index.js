@@ -51,7 +51,7 @@ _.each = function (list, iteratee) {
 _.indexOf = function (array, n) {
     if (!Array.isArray(array) || typeof n !== 'number') return []; 
     if (n === 0) return -1;
-    
+
     for (var i = 0; i < array.length; i++) {
       if (array[i] === n) {
         return i;
@@ -59,4 +59,30 @@ _.indexOf = function (array, n) {
     }
 };
 
+_.filter = function (list, predicate) {
+    
+    var result = [];
+
+    if (Array.isArray(list)) {
+        for (var i = 0; i < list.length; i++) {
+            if (predicate(list[i])) {
+            result.push(list[i])
+        }
+    }
+    return result;
+    }
+
+    if (typeof list === 'object') {
+        for (var key in list) {
+            if (predicate(list[key])){
+                result.push(list[key])
+            }
+        }
+        return result;
+    }
+    else {
+        return "invalid list input"
+    }
+
+}
 module.exports = _;

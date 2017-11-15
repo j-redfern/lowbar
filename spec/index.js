@@ -156,6 +156,28 @@ describe('#indexOf', function () {
     expect(_.indexOf([1,2,3],2)).to.be.equal(1);
     expect(_.indexOf([1,2,3],3)).to.be.equal(2);
     });
-  }); 
+}); 
 
+describe('#filter', function () {
+    it('is a function', function() {
+    expect(_.filter).to.be.a('function');
+    });
+
+    it('returns "invalid list input" when list is not an object or array', function() {
+    expect(_.filter(123)).to.be.equal("invalid list input");
+    expect(_.filter("hello")).to.be.equal("invalid list input");
+    });
+  
+    it('filters through an array and returns an array of values that pass the predicate ', function() {
+    let list = [1,2,3,4,5,6];
+    let predicate = function (list) { return list % 2 === 0 }    
+    expect(_.filter(list, predicate)).to.eql([2, 4, 6]);
+    });
+  
+    it('filters through an object and returns an array of values that pass the predicate ', function() {
+    let list = {a:1 , b:2, c:3};
+    let predicate = function (list) { return list % 2 === 0 }    
+    expect(_.filter(list, predicate)).to.eql([2]);
+    });
+  });
 
