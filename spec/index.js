@@ -1,5 +1,6 @@
 const path = require('path');
 const expect = require('chai').expect;
+const sinon = require('sinon');
 
 const _ = require(path.join(__dirname, '..', './index'));
 
@@ -99,6 +100,36 @@ describe('#last', function () {
     it('returns last n elements in the array', function() {
       expect(_.last([1,2,3],1)).to.be.eql([3]);
       expect(_.last([1,2,3],2)).to.be.eql([2,3]);
+    });
+});
+
+describe('#each', function () {
+    it('is a function', function() {
+    expect(_.each).to.be.a('function');
+    });
+  
+    it('checks the iteratee is called as many times as items in the passed array', function () {
+      const spy = sinon.spy();
+      _.each([1, 2, 3], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+  
+    it('calls the iteratee on the array list and returns list[i],i,list ', function () {
+  
+      const spy = sinon.spy();
+      _.each([1, 2, 3], spy);
+      expect(spy.firstCall.calledWithExactly(1, 0, [1, 2, 3])).to.equal(true);
+      expect(spy.secondCall.calledWithExactly(2, 1, [1, 2, 3])).to.equal(true);
+      expect(spy.thirdCall.calledWithExactly(3, 2, [1, 2, 3])).to.equal(true);
+    });
+  
+    it('calls the iteratee on the object list and returns list[key],key,list', function () {
+  
+      const spy = sinon.spy();
+      _.each({ one: 1, two: 2, three: 3 }, spy);  
+      expect(spy.firstCall.calledWithExactly(1, 'one', { one: 1, two: 2, three: 3 })).to.equal(true);
+      expect(spy.secondCall.calledWithExactly(2, 'two', { one: 1, two: 2, three: 3 })).to.equal(true);
+      expect(spy.thirdCall.calledWithExactly(3, 'three', { one: 1, two: 2, three: 3 })).to.equal(true);
     });
 });
 
