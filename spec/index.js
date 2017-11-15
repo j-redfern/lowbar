@@ -24,5 +24,24 @@ describe('#identity', function () {
     });
 });
 
+describe('#values', function () {
+    it('is a function', function() {
+    expect(_.values).to.be.a('function');
+    });
+    
+    it('returns [] if input is not an object or an array', function() {
+    expect(_.values(123)).to.be.eql([]);
+    expect(_.values('abc')).to.be.eql([]);
+    });
+    
+    it('returns values in the objects in an array', function() {
+    expect(_.values({'a':1,'b':2,'c':3})).to.be.eql([1,2,3]);
+    });
+
+    it('returns values in the array in an array', function() {
+    expect(_.values([1,2,3])).to.be.eql([1,2,3]);
+    });
+});
+
 
 
