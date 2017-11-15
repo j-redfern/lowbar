@@ -203,5 +203,25 @@ describe('#reject', function () {
     expect(_.reject(list, predicate)).to.eql([1,3]);
     });
   
-  }); 
+}); 
 
+describe('#uniq', function () {
+    it('is a function', function() {
+    expect(_.uniq).to.be.a('function');
+    });
+  
+    it('returns a new array', function() {
+      let arr = [1,2,1,3,4];
+      expect(_.uniq(arr)).to.not.equal(arr);
+    });
+  
+    it('returns [] when input is not an array', function() {
+    expect(_.uniq('abc')).to.be.eql([]);
+    expect(_.uniq(123)).to.be.eql([]);
+    expect(_.uniq({})).to.be.eql([]);
+    });
+  
+    it('returns an array of duplicate free values', function() {
+    expect(_.uniq([1,2,1,4,3,2])).to.be.eql([1,2,4,3]);
+    });
+});

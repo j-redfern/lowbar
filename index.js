@@ -110,5 +110,17 @@ _.reject = function (list, predicate) {
     }
 };
 
+_.uniq = function (array) {
+    if (!Array.isArray(array)) return [];
+  
+    let newList = [];
+  
+    for (var i = 0; i < array.length; i++) {
+      if (newList.indexOf(array[i]) === -1) {
+        newList.push(array[i])
+      }
+    }
+    return newList;
+};
 
 module.exports = _;
