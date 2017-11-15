@@ -28,6 +28,12 @@ _.first = function (array, n) {
     }
     return array.slice(0, n);
 };
-  
+
+_.last = function (array, n) {
+    if (!Array.isArray(array) || typeof n !== "number" || n === 0) {
+      return [];
+    }
+    return array.slice(-n);
+};
 
 module.exports = _;

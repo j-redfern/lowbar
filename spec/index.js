@@ -73,5 +73,33 @@ describe('#first', function () {
     });
 });
 
+describe('#last', function () {
+    it('is a function', function() {
+    expect(_.last).to.be.a('function');
+    });
+
+    it('returns [] when array is not an array or when n is not a number', function() {
+    expect(_.last({},1)).to.be.eql([]);
+    expect(_.last('abc',2)).to.be.eql([]);
+    expect(_.last(123,1)).to.be.eql([]);
+    expect(_.last([1,2,3],'a')).to.be.eql([]);
+    expect(_.last([1,2,3],[2])).to.be.eql([]);
+    expect(_.last([1,2,3],{})).to.be.eql([]);
+    });
+      
+    it('returns [] when n is 0 ', function() {
+    expect(_.last([1,2,3],0)).to.be.eql([]);
+    });
+    
+    it('returns last element in the array', function() {
+    expect(_.last([1,2,3],1)).to.be.eql([3]);
+    expect(_.last(["hi","world","bye"],1)).to.be.eql(["bye"]);
+    });
+  
+    it('returns last n elements in the array', function() {
+      expect(_.last([1,2,3],1)).to.be.eql([3]);
+      expect(_.last([1,2,3],2)).to.be.eql([2,3]);
+    });
+});
 
 
