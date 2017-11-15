@@ -179,5 +179,29 @@ describe('#filter', function () {
     let predicate = function (list) { return list % 2 === 0 }    
     expect(_.filter(list, predicate)).to.eql([2]);
     });
-  });
+});
+
+describe('#reject', function () {
+    it('is a function', function() {
+    expect(_.reject).to.be.a('function');
+    });
+    
+    it('returns "invalid list input" when list is not an object or array', function() {
+    expect(_.reject(123)).to.be.equal("invalid list input");
+    expect(_.reject("hello")).to.be.equal("invalid list input");
+    });
+
+    it('returns array of values that does not pass the predicate ', function() {
+    let list = [1, 2, 3, 4, 5, 6];
+    let predicate = function(num) { return num % 2 === 0 }    
+    expect(_.reject(list,predicate)).to.eql([1,3,5]);
+    });
+
+    it('filters through an object and returns an array of values that fails the predicate ', function() {
+    let list = {a:1 , b:2, c:3};
+    let predicate = function (list) { return list % 2 === 0 }    
+    expect(_.reject(list, predicate)).to.eql([1,3]);
+    });
+  
+  }); 
 

@@ -83,6 +83,32 @@ _.filter = function (list, predicate) {
     else {
         return "invalid list input"
     }
-
 }
+
+_.reject = function (list, predicate) {
+    
+      var result = [];
+    
+      if (Array.isArray(list)) {
+        for (var i = 0; i < list.length; i++) {
+          if (!predicate(list[i])) {
+            result.push(list[i])
+          }
+        }
+        return result;
+      }
+      if (typeof list === 'object') {
+        for (var key in list) {
+            if (!predicate(list[key])){
+                result.push(list[key])
+            }
+        }
+        return result;
+    }
+    else {
+        return "invalid list input"
+    }
+};
+
+
 module.exports = _;
