@@ -48,4 +48,15 @@ _.each = function (list, iteratee) {
     }
 };
 
+_.indexOf = function (array, n) {
+    if (!Array.isArray(array) || typeof n !== 'number') return []; 
+    if (n === 0) return -1;
+    
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] === n) {
+        return i;
+      }
+    }
+};
+
 module.exports = _;

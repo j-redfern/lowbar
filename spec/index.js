@@ -133,4 +133,29 @@ describe('#each', function () {
     });
 });
 
+describe('#indexOf', function () {
+    it('is a function', function() {
+    expect(_.indexOf).to.be.a('function');
+    });
+  
+    it('returns [] when array is not an array and n is not a number', function() {
+    expect(_.indexOf(123,1)).to.be.eql([]);
+    expect(_.indexOf({},2)).to.be.eql([]);
+    expect(_.indexOf('hello',3)).to.be.eql([]);
+    expect(_.indexOf([1,2,3],'a')).to.be.eql([]);
+    expect(_.indexOf([1,2,3],[1])).to.be.eql([]);
+    expect(_.indexOf([1,2,3],{})).to.be.eql([]);
+    });
+  
+    it('returns -1 when n is 0', function() {
+    expect(_.indexOf([1,2,3],0)).to.be.equal(-1);
+    });
+
+    it('returns the index position of n in the array', function() {
+    expect(_.indexOf([1,2,3],1)).to.be.equal(0);
+    expect(_.indexOf([1,2,3],2)).to.be.equal(1);
+    expect(_.indexOf([1,2,3],3)).to.be.equal(2);
+    });
+  }); 
+
 
