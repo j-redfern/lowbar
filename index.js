@@ -166,6 +166,31 @@ _.contains = function (list,value,fromIndex) {
     }            
 };
 
+_.pluck = function (list, propertyName) {
+    
+    let newArr = [];
+
+    if (Array.isArray(list)){
+        for(var i = 0; i < list.length ; i++){
+            if (list[i][propertyName] !== undefined) {
+                newArr.push(list[i][propertyName])
+            } else {
+                return "undefined propertyName"
+            }
+        }
+    }else if(typeof list === 'object'){
+        if(list[propertyName] !== undefined){
+            newArr.push(list[propertyName])
+        } else {
+            return "undefined propertyName"
+        }
+    }
+    else {
+        return "invalid input";
+    }  
+    return newArr
+}
+
 module.exports = _;
 
 

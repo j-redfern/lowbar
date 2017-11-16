@@ -275,4 +275,25 @@ describe('#contains', function () {
     expect(_.contains([1,2,3,4],1,4)).to.eql('false');
     });
 });
-  
+
+describe('#pluck', function () {
+    it('is a function', function() {
+    expect(_.pluck).to.be.a('function');
+    });
+
+    it('returns "invalid input" when list is not an object or array ', function() {
+    expect(_.pluck((123, 2))).to.be.equal('invalid input');
+    expect(_.pluck(("hello", "bye"),"bye")).to.be.equal('invalid input');
+    });
+
+    it('returns "undefined propertyName" when propertyName does not exist in list', function() {
+    expect(_.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}], "gender")).to.be.equal('undefined propertyName');
+    expect(_.pluck({name: 'moe', age: 40},"city")).to.be.equal('undefined propertyName');
+        });
+
+    it('returns values in propertyName values as a new array', function() {
+    expect(_.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}], "name")).to.be.eql(["moe", "larry","curly"]);
+    expect(_.pluck({name: 'curly', age: 60}, "name")).to.be.eql(["curly"]);
+    });
+
+});
