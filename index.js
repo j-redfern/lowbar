@@ -143,5 +143,29 @@ _.map = function (list, iteratee) {
     else {
       return []
     }
-  }
+};
+
+_.contains = function (list,value,fromIndex) {
+    if(Array.isArray(list) || typeof list === 'string') {
+        for (var i = fromIndex ; i < list.length ; i++) {
+            if(value === list[i]) {
+                return 'true'
+            } 
+        } return 'false';    
+    }
+    if (typeof list === 'object'){
+        for (var key in list) {
+            if(value === list[key]) {
+                return 'true'
+            } 
+        }  
+        return 'false'
+    }
+    else {
+        return 'false';
+    }            
+};
+
 module.exports = _;
+
+

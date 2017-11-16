@@ -234,12 +234,45 @@ describe('#map', function () {
       expect(_.map('abc')).to.be.eql([]);
       expect(_.map(123)).to.be.eql([]);
     });
-    
+
     it('produces a new array of values by mapping each element in the array through an iteratee', function() {
       expect(_.map([1,2,3], function (num,index,list){ return num * 3})).to.be.eql([3,6,9]);
       expect(_.map([1,2,3,4], function (num){ return num + 1})).to.be.eql([2,3,4,5]);
     });
+
     it('produces a new array of values by mapping each element in the object through an iteratee', function() {
       expect(_.map({one:1,two:2,three:3},function (num){ return num * 3})).to.be.eql([3,6,9]);
     });
 });
+
+describe('#contains', function () {
+    it('is a function', function() {
+    expect(_.contains).to.be.a('function');
+    });
+  
+    it('returns true when value is present in the list', function() {
+    expect(_.contains({1:"hello", 2: "bye", 3: "world"}, "bye",1)).to.equal('true');
+    expect(_.contains("hello", "e",1)).to.equal('true');
+    expect(_.contains([1,2,3],3,1)).to.equal('true');
+    });
+  
+    it('returns false when value is not present in the list or typeOf list is a number', function() {
+    expect(_.contains({1:"hello", 2: "bye", 3: "world"}, "hi",2)).to.equal('false');
+    expect(_.contains("hello", "g",2)).to.equal('false');
+    expect(_.contains([1,2,3],5,2)).to.equal('false');
+    expect(_.contains((1,2,3),2,2)).to.equal('false');
+    });
+  
+    it('starts search from given index when list is an array and returns true if value is in the searched array', function() {
+    expect(_.contains([1,2,3,4],3,1)).to.eql('true');
+    expect(_.contains([1,2,3,4],1,0)).to.eql('true');
+    expect(_.contains([1,2,3,4],4,2)).to.eql('true');
+    });
+  
+    it('starts search from given index when list is an array and returns false if value is in the searched array', function() {
+    expect(_.contains([1,2,3,4],3,4)).to.eql('false');
+    expect(_.contains([1,2,3,4],2,3)).to.eql('false');
+    expect(_.contains([1,2,3,4],1,4)).to.eql('false');
+    });
+});
+  
